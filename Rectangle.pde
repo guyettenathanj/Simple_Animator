@@ -5,7 +5,7 @@ public class Rectangle implements CardinalDirectionMover
 {
 
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
-  public Coordinate position  = new Coordinate();
+  public Coordinate position = new Coordinate();
 
   private int rectWidth;
   private int rectHeight;  
@@ -28,22 +28,20 @@ public class Rectangle implements CardinalDirectionMover
     this.rectHeight = rectHeight;
   }
   
-public void playbackHistory(int timeBetweenFrames)
+public void playbackHistory(int timeBetweenFramesInMilliSeconds)
 {
-  System.out.println("playbackHistory called...");
-  
   new java.util.Timer().schedule( 
     new java.util.TimerTask() {
-      private int index = 0;
+      private int positionIndex = 0;
 
       @Override
       public void run() {
-        if (index < positionHistory.size()) {
-          Coordinate element = positionHistory.get(index);
+        if (positionIndex < positionHistory.size()) {
+          Coordinate element = positionHistory.get(positionIndex);
           position.xCoordinate = element.xCoordinate;
           position.yCoordinate = element.yCoordinate;
           display();
-          index++;
+          positionIndex++;
         } else {
           // Cancel the timer when we've played back all history.
           this.cancel();
@@ -51,11 +49,10 @@ public void playbackHistory(int timeBetweenFrames)
       }
     }, 
     0,      // Start immediately
-    timeBetweenFrames
+    timeBetweenFramesInMilliSeconds
   );
 }
 
-  
   public void display()
   {
     mouseLogic();

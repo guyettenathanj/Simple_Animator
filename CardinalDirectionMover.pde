@@ -5,6 +5,3 @@ public interface CardinalDirectionMover
   void moveLeft(int moveLength);
   void moveRight(int moveLength);
 }
-
-// Another comment
-// Add another random comment 
