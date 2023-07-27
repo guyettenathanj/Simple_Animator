@@ -1,7 +1,6 @@
 import org.gicentre.handy.*;
 
 // Program state...
-// Adding random comment.
 int rectWidth = 100;
 int rectHeight = 100;
 int stepLength = 100;
