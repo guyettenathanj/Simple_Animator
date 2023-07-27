@@ -56,7 +56,7 @@ else if (key == 'r') {
     recordingMode = ! recordingMode;
     if(recordingMode){
       r.setRecordingMode(true);
-      r.playbackHistory();
+      r.playbackHistory(50);
       currentFillColor = color(255, 0, 0); 
     }
     else if(!recordingMode){

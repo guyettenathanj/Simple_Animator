@@ -28,24 +28,33 @@ public class Rectangle implements CardinalDirectionMover
     this.rectHeight = rectHeight;
   }
   
-  //public void setPosition(int xCoordinate, int yCoordinate)
-  //{
-    //position.xCoordinate = xCoordinate;
-    //position.yCoordinate = yCoordinate;
-    //positionHistory.add(new Coordinate(xCoordinate, yCoordinate));
-    //System.out.println("setting positiong " + xCoordinate);
-  //}
+public void playbackHistory(int timeBetweenFrames)
+{
+  System.out.println("playbackHistory called...");
   
-  public void playbackHistory()
-  {
-    System.out.println("playbackHistory called...");
-    for(Coordinate element : positionHistory)
-    {
-      position.xCoordinate = element.xCoordinate;
-      position.yCoordinate = element.yCoordinate;
-      display();
-    }
-  }
+  new java.util.Timer().schedule( 
+    new java.util.TimerTask() {
+      private int index = 0;
+
+      @Override
+      public void run() {
+        if (index < positionHistory.size()) {
+          Coordinate element = positionHistory.get(index);
+          position.xCoordinate = element.xCoordinate;
+          position.yCoordinate = element.yCoordinate;
+          display();
+          index++;
+        } else {
+          // Cancel the timer when we've played back all history.
+          this.cancel();
+        }
+      }
+    }, 
+    0,      // Start immediately
+    timeBetweenFrames
+  );
+}
+
   
   public void display()
   {
@@ -76,19 +85,19 @@ public class Rectangle implements CardinalDirectionMover
   
   void moveDown(int moveLength)
   {
-    position.yCoordinate = position.yCoordinate + stepLength;
+    position.yCoordinate = position.yCoordinate + moveLength;
     addCurrentPositionToHistory();
   }
   
   void moveLeft(int moveLength)
   {
-    position.xCoordinate = position.xCoordinate - stepLength;
+    position.xCoordinate = position.xCoordinate - moveLength;
     addCurrentPositionToHistory();
   }
   
   void moveRight(int moveLength)
   {
-    position.xCoordinate = position.xCoordinate + stepLength;
+    position.xCoordinate = position.xCoordinate + moveLength;
     addCurrentPositionToHistory();
   }
   
