@@ -9,6 +9,7 @@ public class Rectangle implements CardinalDirectionMover
 
   private int rectWidth;
   private int rectHeight;  
+  private Boolean recordingMode = false;
   
   public Rectangle()
   {
@@ -52,12 +53,18 @@ public class Rectangle implements CardinalDirectionMover
     rect(position.xCoordinate, position.yCoordinate, rectWidth, rectHeight);
   }
   
+  public void setRecordingMode(Boolean recordingMode)
+  {
+    this.recordingMode = recordingMode;
+  }
+  
   void mouseLogic()
   {
     if (mousePressed)
     {
       position.xCoordinate = mouseX;
       position.yCoordinate = mouseY;
+      addCurrentPositionToHistory();
     } 
   }
   
@@ -87,7 +94,9 @@ public class Rectangle implements CardinalDirectionMover
   
   private void addCurrentPositionToHistory()
   {
-    positionHistory.add(new Coordinate(position.xCoordinate, position.yCoordinate));
+    if(recordingMode)
+    {
+      positionHistory.add(new Coordinate(position.xCoordinate, position.yCoordinate));
+    }
   }  
-  
 }

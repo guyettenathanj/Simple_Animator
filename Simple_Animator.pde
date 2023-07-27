@@ -11,7 +11,7 @@ Boolean drawbackground = true;
 
 // Variable to hold current fill color. Default is white.
 color currentFillColor = color(255, 255, 255); 
-Boolean selectionMode = false;
+Boolean recordingMode = false;
 Boolean lineMode;
    
    
@@ -53,12 +53,14 @@ void keyPressed() {
     r.moveUp(stepLength);
   }
 else if (key == 'r') {
-    selectionMode = ! selectionMode;
-    if(selectionMode){
+    recordingMode = ! recordingMode;
+    if(recordingMode){
+      r.setRecordingMode(true);
       r.playbackHistory();
-      currentFillColor = color(0, 0, 255); 
+      currentFillColor = color(255, 0, 0); 
     }
-    else if(!selectionMode){
+    else if(!recordingMode){
+      r.setRecordingMode(false);
       currentFillColor = color(255, 255, 255); 
     }
   }
