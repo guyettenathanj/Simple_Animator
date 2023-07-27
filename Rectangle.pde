@@ -27,10 +27,23 @@ public class Rectangle implements CardinalDirectionMover
     this.rectHeight = rectHeight;
   }
   
-  public void setPosition(int xCoordinate, int yCoordinate)
+  //public void setPosition(int xCoordinate, int yCoordinate)
+  //{
+    //position.xCoordinate = xCoordinate;
+    //position.yCoordinate = yCoordinate;
+    //positionHistory.add(new Coordinate(xCoordinate, yCoordinate));
+    //System.out.println("setting positiong " + xCoordinate);
+  //}
+  
+  public void playbackHistory()
   {
-    position.xCoordinate = xCoordinate;
-    position.yCoordinate = yCoordinate;
+    System.out.println("playbackHistory called...");
+    for(Coordinate element : positionHistory)
+    {
+      position.xCoordinate = element.xCoordinate;
+      position.yCoordinate = element.yCoordinate;
+      display();
+    }
   }
   
   public void display()
@@ -50,21 +63,31 @@ public class Rectangle implements CardinalDirectionMover
   
   void moveUp(int moveLength)
   {
-    position.yCoordinate = position.yCoordinate - moveLength;
+    position.yCoordinate = position.yCoordinate - moveLength;   
+    addCurrentPositionToHistory();
   }
   
   void moveDown(int moveLength)
   {
     position.yCoordinate = position.yCoordinate + stepLength;
+    addCurrentPositionToHistory();
   }
   
   void moveLeft(int moveLength)
   {
     position.xCoordinate = position.xCoordinate - stepLength;
+    addCurrentPositionToHistory();
   }
   
   void moveRight(int moveLength)
   {
     position.xCoordinate = position.xCoordinate + stepLength;
+    addCurrentPositionToHistory();
   }
+  
+  private void addCurrentPositionToHistory()
+  {
+    positionHistory.add(new Coordinate(position.xCoordinate, position.yCoordinate));
+  }  
+  
 }

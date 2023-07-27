@@ -55,6 +55,7 @@ void keyPressed() {
 else if (key == 'r') {
     selectionMode = ! selectionMode;
     if(selectionMode){
+      r.playbackHistory();
       currentFillColor = color(0, 0, 255); 
     }
     else if(!selectionMode){
