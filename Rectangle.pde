@@ -82,7 +82,6 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
     return returnValue;
   }
 
-  
   public void setRecordingMode(Boolean recordingMode)
   {
     this.recordingMode = recordingMode;
@@ -102,6 +101,11 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
   public void onMouseHover() 
   {
     currentFillColor = color(0, 255, 0);
+  }
+  
+  public void onMouseOutside()
+  {
+    currentFillColor = color(255, 255, 255); 
   }
   
   @Override

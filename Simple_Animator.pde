@@ -17,12 +17,27 @@ void setup() {
 }
 
 
-void draw() { 
-  if(drawbackground)
-  {
+private boolean mouseHoveringOnShape(Rectangle r) {
+  return r.containsPoint(mouseX, mouseY);
+}
+
+void draw() {
+  if(drawbackground) {
     background(backgroundColor);
   }
-  
+
+  if(mouseHoveringOnShape(r)) 
+  {
+    r.onMouseHover();
+  }
+  else if(!mouseHoveringOnShape(r))
+  {
+    if(!recordingMode)
+    {
+      r.onMouseOutside();
+    }
+  }
+
   fill(r.currentFillColor);
   r.display();
 }
