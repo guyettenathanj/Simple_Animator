@@ -56,8 +56,13 @@ public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
 
   public void display()
   {
-    mouseLogic();
+    if(isHover()){
+      fill(0, 255, 0);  // color it green if mouse is over
+    } else {
+      fill(currentFillColor); // default color
+    }
     rect(position.xCoordinate, position.yCoordinate, rectWidth, rectHeight);
+    mouseLogic();
   }
   
   public void setRecordingMode(Boolean recordingMode)
@@ -98,6 +103,15 @@ public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
     position.xCoordinate = position.xCoordinate + moveLength;
     addCurrentPositionToHistory();
   }
+  
+  boolean isHover() {
+  boolean isWithinXBounds = 
+  mouseX >= position.xCoordinate && mouseX <= position.xCoordinate + rectWidth;
+  boolean isWithinYBounds = 
+  mouseY >= position.yCoordinate && mouseY <= position.yCoordinate + rectHeight;
+  return isWithinXBounds && isWithinYBounds;
+}
+
   
   private void addCurrentPositionToHistory()
   {
