@@ -8,8 +8,8 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
   public Coordinate position = new Coordinate();
   public color currentFillColor = color(255, 255, 255); 
   
-  private int rectWidth;
-  private int rectHeight;  
+  private int rectWidth = 100;
+  private int rectHeight = 100;  
   public Boolean recordingMode = false;
   
   public Rectangle()
