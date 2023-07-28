@@ -4,9 +4,7 @@ import org.gicentre.handy.*;
 int rectWidth = 100;
 int rectHeight = 100;
 int stepLength = 100;
-HandyRenderer h, h1,h2,h3,h4;
 Rectangle r = new Rectangle();
-CardinalDirectionMover c = null;
 Boolean drawbackground = true;
 
 // Variable to hold current fill color. Default is white.
@@ -19,11 +17,6 @@ void setup() {
   size(1500, 1000);
   noStroke();
   background(0);
-  h1 = HandyPresets.createPencil(this);
-  h2 = HandyPresets.createColouredPencil(this);
-  h3 = HandyPresets.createWaterAndInk(this);
-  h4 = HandyPresets.createMarker(this);
-  h = h4;
 }
 
 
@@ -33,7 +26,6 @@ void draw() {
     background(0);
   }
   
-  h.setRoughness(700);
   fill(currentFillColor);
   r.display();
 }
