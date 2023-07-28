@@ -28,7 +28,7 @@ public class Rectangle implements CardinalDirectionMover
     this.rectHeight = rectHeight;
   }
   
-public void playbackHistory(int timeBetweenFramesInMilliSeconds)
+public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
 {
   new java.util.Timer().schedule( 
     new java.util.TimerTask() {

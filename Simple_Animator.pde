@@ -56,7 +56,7 @@ else if (key == 'r') {
     recordingMode = ! recordingMode;
     if(recordingMode){
       r.setRecordingMode(true);
-      r.playbackHistory(50);
+      r.playbackPositionHistory(50);
       currentFillColor = color(255, 0, 0); 
     }
     else if(!recordingMode){
@@ -66,5 +66,7 @@ else if (key == 'r') {
   }
   else if (key == 'b') {
     drawbackground = ! drawbackground;
+  }
+  else if (key == 'p') {
   }
 }
