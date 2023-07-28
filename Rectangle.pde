@@ -29,6 +29,12 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
     this.rectHeight = rectHeight;
   }
   
+  public Rectangle(int xCoordinate, int yCoordinate)
+  {
+    position.xCoordinate = xCoordinate;
+    position.yCoordinate = yCoordinate;
+  }
+  
   public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
   {
     new java.util.Timer().schedule( 
@@ -94,7 +100,7 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
       position.xCoordinate = mouseX;
       position.yCoordinate = mouseY;
       addCurrentPositionToHistory();
-    } 
+    }
   }
   
   @Override
