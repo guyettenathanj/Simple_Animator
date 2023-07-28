@@ -40,16 +40,16 @@ void draw() {
 
 
 void keyPressed() {
-  if (key == 'd') {
+  if (key == '6') {
     r.moveRight(stepLength);
   }
-  else if (key == 'a') {
+  else if (key == '4') {
     r.moveLeft(stepLength);
   }
-  else if (key == 's') {
+  else if (key == '2') {
     r.moveDown(stepLength);
   }
-  else if (key == 'w') {
+  else if (key == '8') {
     r.moveUp(stepLength);
   }
 else if (key == 'r') {
