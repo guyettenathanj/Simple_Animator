@@ -6,12 +6,8 @@ int rectHeight = 100;
 int stepLength = 100;
 Rectangle r = new Rectangle();
 Boolean drawbackground = true;
-
-// Variable to hold current fill color. Default is white.
-color currentFillColor = color(255, 255, 255); 
 Boolean recordingMode = false;
 Boolean lineMode;
-   
    
 void setup() {
   size(1500, 1000);
@@ -26,7 +22,7 @@ void draw() {
     background(0);
   }
   
-  fill(currentFillColor);
+  fill(r.currentFillColor);
   r.display();
 }
 
@@ -49,11 +45,11 @@ else if (key == 'r') {
     if(recordingMode){
       r.setRecordingMode(true);
       r.playbackPositionHistory(50);
-      currentFillColor = color(255, 0, 0); 
+      r.currentFillColor = color(255, 0, 0); 
     }
     else if(!recordingMode){
       r.setRecordingMode(false);
-      currentFillColor = color(255, 255, 255); 
+      r.currentFillColor = color(255, 255, 255); 
     }
   }
   else if (key == 'b') {

@@ -6,6 +6,7 @@ public class Rectangle implements CardinalDirectionMover
 
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
   public Coordinate position = new Coordinate();
+  public color currentFillColor = color(255, 255, 255); 
 
   private int rectWidth;
   private int rectHeight;  
