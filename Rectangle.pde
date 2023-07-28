@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class Rectangle implements CardinalDirectionMover, MouseHoverListener
 {
-
+  
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
   public Coordinate position = new Coordinate();
   public color currentFillColor = color(255, 255, 255); 
-
+  
   private int rectWidth;
   private int rectHeight;  
-  private Boolean recordingMode = false;
+  public Boolean recordingMode = false;
   
   public Rectangle()
   {
@@ -100,7 +100,10 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
   @Override
   public void onMouseHover() 
   {
-    currentFillColor = color(0, 255, 0);
+    if(!recordingMode)
+    {
+      currentFillColor = color(0, 255, 0);
+    }
   }
   
   public void onMouseOutside()

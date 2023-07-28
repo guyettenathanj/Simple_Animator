@@ -6,7 +6,7 @@ int rectHeight = 100;
 int stepLength = 100;
 Rectangle r = new Rectangle();
 Boolean drawbackground = true;
-Boolean recordingMode = false;
+
 Boolean lineMode;
 color backgroundColor = color(0, 0, 0);
    
@@ -32,7 +32,7 @@ void draw() {
   }
   else if(!mouseHoveringOnShape(r))
   {
-    if(!recordingMode)
+    if(!r.recordingMode)
     {
       r.onMouseOutside();
     }
@@ -57,13 +57,13 @@ void keyPressed() {
     r.moveUp(stepLength);
   }
 else if (key == 'r') {
-    recordingMode = ! recordingMode;
-    if(recordingMode){
+    r.recordingMode = ! r.recordingMode;
+    if(r.recordingMode){
       r.setRecordingMode(true);
       r.playbackPositionHistory(50);
       r.currentFillColor = color(255, 0, 0); 
     }
-    else if(!recordingMode){
+    else if(!r.recordingMode){
       r.setRecordingMode(false);
       r.currentFillColor = color(255, 255, 255); 
     }
