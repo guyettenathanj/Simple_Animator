@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Rectangle implements CardinalDirectionMover
+public class Rectangle implements CardinalDirectionMover, MouseHoverListener
 {
 
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
@@ -29,41 +29,59 @@ public class Rectangle implements CardinalDirectionMover
     this.rectHeight = rectHeight;
   }
   
-public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
-{
-  new java.util.Timer().schedule( 
-    new java.util.TimerTask() {
-      private int positionIndex = 0;
+  public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
+  {
+    new java.util.Timer().schedule( 
+      new java.util.TimerTask() {
+        private int positionIndex = 0;
 
-      @Override
-      public void run() {
-        if (positionIndex < positionHistory.size()) {
-          Coordinate element = positionHistory.get(positionIndex);
-          position.xCoordinate = element.xCoordinate;
-          position.yCoordinate = element.yCoordinate;
-          display();
-          positionIndex++;
-        } else {
-          // Cancel the timer when we've played back all history.
-          this.cancel();
+        @Override
+        public void run() {
+          if (positionIndex < positionHistory.size()) {
+            Coordinate element = positionHistory.get(positionIndex);
+            position.xCoordinate = element.xCoordinate;
+            position.yCoordinate = element.yCoordinate;
+            display();
+            positionIndex++;
+          } else {
+            // Cancel the timer when we've played back all history.
+            this.cancel();
+          }
         }
-      }
-    }, 
-    0,      // Start immediately
-    timeBetweenFramesInMilliSeconds
-  );
-}
+      }, 
+      0,      // Start immediately
+      timeBetweenFramesInMilliSeconds
+    );
+  }
 
   public void display()
   {
-    if(isHover()){
-      fill(0, 255, 0);  // color it green if mouse is over
-    } else {
-      fill(currentFillColor); // default color
-    }
+    fill(currentFillColor);
     rect(position.xCoordinate, position.yCoordinate, rectWidth, rectHeight);
     mouseLogic();
   }
+
+  
+  public boolean containsPoint(int x, int y) 
+  {
+    return isInsideHorizontalBounds(x) && isInsideVerticalBounds(y);
+  }
+  
+  public boolean isInsideHorizontalBounds(int x)
+  {
+    boolean returnValue = (x >= position.xCoordinate) 
+    && 
+    (x <= position.xCoordinate + rectWidth);
+    return returnValue;
+  }
+  
+  public boolean isInsideVerticalBounds(int y)
+  {
+    boolean returnValue = 
+    (y >= position.yCoordinate) && (y <= position.yCoordinate + rectHeight);
+    return returnValue;
+  }
+
   
   public void setRecordingMode(Boolean recordingMode)
   {
@@ -80,38 +98,39 @@ public void playbackPositionHistory(int timeBetweenFramesInMilliSeconds)
     } 
   }
   
+  @Override
+  public void onMouseHover() 
+  {
+    currentFillColor = color(0, 255, 0);
+  }
+  
+  @Override
   void moveUp(int moveLength)
   {
     position.yCoordinate = position.yCoordinate - moveLength;   
     addCurrentPositionToHistory();
   }
   
+  @Override
   void moveDown(int moveLength)
   {
     position.yCoordinate = position.yCoordinate + moveLength;
     addCurrentPositionToHistory();
   }
   
+  @Override
   void moveLeft(int moveLength)
   {
     position.xCoordinate = position.xCoordinate - moveLength;
     addCurrentPositionToHistory();
   }
   
+  @Override
   void moveRight(int moveLength)
   {
     position.xCoordinate = position.xCoordinate + moveLength;
     addCurrentPositionToHistory();
   }
-  
-  boolean isHover() {
-  boolean isWithinXBounds = 
-  mouseX >= position.xCoordinate && mouseX <= position.xCoordinate + rectWidth;
-  boolean isWithinYBounds = 
-  mouseY >= position.yCoordinate && mouseY <= position.yCoordinate + rectHeight;
-  return isWithinXBounds && isWithinYBounds;
-}
-
   
   private void addCurrentPositionToHistory()
   {
