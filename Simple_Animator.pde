@@ -8,6 +8,7 @@ Rectangle r = new Rectangle();
 Boolean drawbackground = true;
 Boolean recordingMode = false;
 Boolean lineMode;
+color backgroundColor = color(0, 0, 0);
    
 void setup() {
   size(1500, 1000);
@@ -19,7 +20,7 @@ void setup() {
 void draw() { 
   if(drawbackground)
   {
-    background(0);
+    background(backgroundColor);
   }
   
   fill(r.currentFillColor);
