@@ -1,5 +1,6 @@
 import org.gicentre.handy.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 // Program state...
 int rectWidth = 100;
@@ -16,9 +17,13 @@ void setup() {
   noStroke();
   background(0);
   
-  // Add rectangles to the list
-  rectangles.add(new Rectangle());
-  rectangles.add(new Rectangle(200, 300));
+  for(int i = 0; i <= 5; i ++)
+  {
+    rectangles.add(
+    new Rectangle(
+    getRandomNumber(0, 500),getRandomNumber(0, 500) )
+    );
+  }
 }
 
 
@@ -47,10 +52,9 @@ void draw() {
 
 
 void keyPressed() {
-  // Get the first rectangle from the list for the key presses
-  Rectangle r = rectangles.get(0);
   
-  if (key == '6') {
+  for(Rectangle r: rectangles){
+      if (key == '6') {
     r.moveRight(stepLength);
   } else if (key == '4') {
     r.moveLeft(stepLength);
@@ -63,14 +67,24 @@ void keyPressed() {
     if(r.recordingMode){
       r.setRecordingMode(true);
       r.playbackPositionHistory(50);
-      r.currentFillColor = color(255, 0, 0); 
+      r.currentFillColor = color(getRandomNumber(50, 255), getRandomNumber(0,1 ), 0); 
     } else if(!r.recordingMode){
       r.setRecordingMode(false);
-      r.currentFillColor = color(255, 255, 255); 
+      r.currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
     }
   } else if (key == 'b') {
     drawbackground = !drawbackground;
   } else if (key == 'p') {
     // ... handle 'p' key press here
   }
+  
+  }
+}
+  
+int getRandomNumber(int lowerBound, int upperBound) 
+{
+  Random random = new Random();
+  int number = random.nextInt(lowerBound, upperBound); 
+  System.out.println("Number was " + number);
+  return number;
 }
