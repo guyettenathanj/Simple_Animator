@@ -1,3 +1,4 @@
-interface MouseHoverListener {
+interface MouseHoverListener 
+{
   void onMouseHover();
 }

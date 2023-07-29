@@ -8,7 +8,6 @@ int rectHeight = 100;
 int stepLength = 100;
 ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 Boolean drawbackground = true;
-
 Boolean lineMode;
 color backgroundColor = color(0, 0, 0);
 
@@ -17,67 +16,64 @@ void setup() {
   noStroke();
   background(0);
   
-  for(int i = 0; i <= 5; i ++)
+  for(int i = 0; i <= 2; i ++)
   {
     rectangles.add(
     new Rectangle(
-    getRandomNumber(0, 500),getRandomNumber(0, 500) )
+    getRandomNumber(0, 30),getRandomNumber(0, 300) )
     );
   }
 }
 
-
-private boolean mouseHoveringOnShape(Rectangle r) {
+private boolean mouseHoveringOnShape(Rectangle r) 
+{
   return r.containsPoint(mouseX, mouseY);
 }
 
-void draw() {
-  if(drawbackground) {
-    background(backgroundColor);
-  }
+void draw() 
+{
+  drawBackgroundLogic();
+  shapeLogic(rectangles);
+}
 
-  for(Rectangle r: rectangles) {
-    if(mouseHoveringOnShape(r)) {
-      r.onMouseHover();
-    } else if(!mouseHoveringOnShape(r)) {
-      if(!r.recordingMode) {
-        r.onMouseOutside();
-      }
-    }
-
-    fill(r.currentFillColor);
-    r.display();
+void shapeLogic(ArrayList<Rectangle> rectangles)
+{
+  for(Rectangle shape: rectangles) 
+  { 
+    mouseHoverLogic(shape);
+    fill(shape.currentFillColor);
+    shape.display();
   }
 }
 
-
-void keyPressed() {
-  
-  for(Rectangle r: rectangles){
-      if (key == '6') {
-    r.moveRight(stepLength);
-  } else if (key == '4') {
-    r.moveLeft(stepLength);
-  } else if (key == '2') {
-    r.moveDown(stepLength);
-  } else if (key == '8') {
-    r.moveUp(stepLength);
-  } else if (key == 'r') {
-    r.recordingMode = !r.recordingMode;
-    if(r.recordingMode){
-      r.setRecordingMode(true);
-      r.playbackPositionHistory(50);
-      r.currentFillColor = color(getRandomNumber(50, 255), getRandomNumber(0,1 ), 0); 
-    } else if(!r.recordingMode){
-      r.setRecordingMode(false);
-      r.currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
-    }
-  } else if (key == 'b') {
-    drawbackground = !drawbackground;
-  } else if (key == 'p') {
-    // ... handle 'p' key press here
+void keyPressed() 
+{
+  for(Rectangle r: rectangles)
+  {
+    r.onKeyPressed(key);
   }
-  
+}
+
+void mouseHoverLogic(Rectangle r)
+{
+  if(mouseHoveringOnShape(r))
+  {
+    r.onMouseHover();
+  }
+  else if(!mouseHoveringOnShape(r)) 
+  {
+    if(!r.recordingMode)
+    {
+      r.onMouseOutside();
+    }
+  }
+}
+
+void drawBackgroundLogic()
+{
+  if(drawbackground) 
+  {
+    background(backgroundColor);
   }
 }
   

@@ -1,15 +1,16 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Rectangle implements CardinalDirectionMover, MouseHoverListener
+public class Rectangle implements 
+CardinalDirectionMover, MouseHoverListener, KeyPressedListener
 {
-  
+  int stepLength = 10;
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
   public Coordinate position = new Coordinate();
   public color currentFillColor = color(255, 255, 255); 
   
-  private int rectWidth = 100;
-  private int rectHeight = 100;  
+  int rectWidth = 100;
+  int rectHeight = 100;  
   public Boolean recordingMode = false;
   
   public Rectangle()
@@ -112,6 +113,46 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
     }
   }
   
+  @Override
+  void onKeyPressed(char keyThatWasPressed)
+  {
+    if (key == '6') 
+    {
+      moveRight(stepLength);
+    }
+    else if (key == '4') 
+    {
+      moveLeft(stepLength);
+    } 
+    else if (key == '2') 
+    {
+      moveDown(stepLength);
+    }
+    else if (key == '8')
+    {
+      moveUp(stepLength);
+    }
+    else if (key == 'r') 
+    {
+      recordingMode = !recordingMode;
+      if(recordingMode)
+      {
+        setRecordingMode(true);
+        playbackPositionHistory(50);
+        currentFillColor = color(getRandomNumber(50, 255), getRandomNumber(0,1 ), 0);
+      }
+    else if(!recordingMode)
+    {
+      setRecordingMode(false);
+      currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
+    }
+  }
+    else if (key == 'b') 
+    {
+      drawbackground = !drawbackground;
+    } 
+  }
+  
   public void onMouseOutside()
   {
     currentFillColor = color(255, 255, 255); 
@@ -151,5 +192,5 @@ public class Rectangle implements CardinalDirectionMover, MouseHoverListener
     {
       positionHistory.add(new Coordinate(position.xCoordinate, position.yCoordinate));
     }
-  }  
+  }
 }
