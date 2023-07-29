@@ -28,6 +28,7 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
     position.yCoordinate = yCoordinate;
     this.rectWidth = rectWidth;
     this.rectHeight = rectHeight;
+    addDefaultKeyMappings();
   }
   
   public Rectangle(int xCoordinate, int yCoordinate)
@@ -43,11 +44,40 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
     keyHandlers.put('4', () -> moveLeft(stepLength));
     keyHandlers.put('2', () -> moveDown(stepLength));
     keyHandlers.put('8', () -> moveUp(stepLength));
+    keyHandlers.put('r', () -> recordingLogic());
+    keyHandlers.put('b', () -> backgroundLogic());
+    keyHandlers.put('p', () -> pauseLogic());
   }
   
-
-
-
+  void pauseLogic()
+  {
+    paused = !paused;
+  }
+  
+  void recordingLogic()
+  {
+    recordingMode = !recordingMode;
+    if(recordingMode)
+    {
+      if(!paused)
+      {
+        setRecordingMode(true);
+        playbackPositionHistory(50);
+        currentFillColor = color(getRandomNumber(50, 255),
+        getRandomNumber(0,1 ), 0);
+      }
+    }
+    else if(!recordingMode)
+    {
+      setRecordingMode(false);
+      currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
+    }
+  }
+  
+  void backgroundLogic()
+  {
+    drawbackground = !drawbackground;
+  }
 
   public void setRecordingMode(Boolean recordingMode)
   {
@@ -67,37 +97,9 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
   void onKeyPressed(char keyThatWasPressed)
   {
     Runnable command = keyHandlers.get(keyThatWasPressed);
-    if (command != null) {
+    if (command != null) 
+    {
         command.run();
-    }
-    
-    else if (key == 'r') 
-    {
-      recordingMode = !recordingMode;
-      if(recordingMode)
-      {
-        if(!paused)
-        {
-          setRecordingMode(true);
-          playbackPositionHistory(50);
-          currentFillColor = color(getRandomNumber(50, 255), getRandomNumber(0,1 ), 0);
-        }
-      }
-    else if(!recordingMode)
-    {
-      setRecordingMode(false);
-      currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
-    }
-  }
-  
-    else if (key == 'b') 
-    {
-      drawbackground = !drawbackground;
-    } 
-    
-    else if (key == 'p') 
-    {
-      paused = !paused;
     }
   }
   
