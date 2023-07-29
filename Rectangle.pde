@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Rectangle extends Shape implements 
-CardinalDirectionMover, KeyPressedListener
+CardinalDirectionMover
 {
   int stepLength = 10;
 
@@ -47,6 +47,13 @@ CardinalDirectionMover, KeyPressedListener
     keyHandlers.put('r', () -> recordingLogic());
     keyHandlers.put('b', () -> backgroundLogic());
     keyHandlers.put('p', () -> pauseLogic());
+  }
+  
+  @Override
+  public void display()
+  {
+    super.display();
+    rect(position.xCoordinate, position.yCoordinate, rectWidth, rectHeight);
   }
   
   void pauseLogic()

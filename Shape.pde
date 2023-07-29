@@ -126,7 +126,6 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   public void display()
   {
     fill(currentFillColor);
-    rect(position.xCoordinate, position.yCoordinate, rectWidth, rectHeight);
     mouseLogic();
   }
   
