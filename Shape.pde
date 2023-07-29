@@ -1,5 +1,7 @@
-public class Shape implements CardinalDirectionMover
+public class Shape implements 
+CardinalDirectionMover, KeyPressedListener, MouseHoverListener
 {
+  Map<Character, Runnable> keyHandlers = new HashMap<>();
   public color currentFillColor = color(255, 255, 255);
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
   public Boolean recordingMode = false;
@@ -14,6 +16,30 @@ public class Shape implements CardinalDirectionMover
       addCurrentPositionToHistory();
     }
   }  
+  
+  @Override
+  public void onMouseHover() 
+  {
+    if(!recordingMode)
+    {
+      currentFillColor = color(0, 255, 0);
+    }
+  }
+  
+  public void onMouseOutside()
+  {
+    currentFillColor = color(255, 255, 255); 
+  }
+  
+  @Override
+  void onKeyPressed(char keyThatWasPressed)
+  {
+    Runnable command = keyHandlers.get(keyThatWasPressed);
+    if (command != null) 
+    {
+        command.run();
+    }
+  }
   
   private void addCurrentPositionToHistory()
   {

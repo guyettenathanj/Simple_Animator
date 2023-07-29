@@ -6,7 +6,7 @@ import java.util.Random;
 int rectWidth = 100;
 int rectHeight = 100;
 int stepLength = 100;
-ArrayList<Rectangle> shapes = new ArrayList<Rectangle>();
+ArrayList<Shape> shapes = new ArrayList<Shape>();
 ArrayList<Button> uiElements = new ArrayList<Button>();
 Boolean drawbackground = true;
 Boolean lineMode;
@@ -31,9 +31,9 @@ void uiLogic(ArrayList<Button> uiElements)
 {
 }
 
-void shapeLogic(ArrayList<Rectangle> shapes)
+void shapeLogic(ArrayList<Shape> shapes)
 {
-  for(Rectangle shape: shapes) 
+  for(Shape shape: shapes) 
   { 
     mouseHoverLogic(shape);
     fill(shape.currentFillColor);
@@ -52,30 +52,30 @@ void addShapes(int numShapes)
   }
 }
 
-private boolean mouseHoveringOnShape(Rectangle r) 
+private boolean mouseHoveringOnShape(Shape r) 
 {
   return r.containsPoint(mouseX, mouseY);
 }
 
 void keyPressed() 
 {
-  for(Rectangle r: shapes)
+  for(Shape r: shapes)
   {
     r.onKeyPressed(key);
   }
 }
 
-void mouseHoverLogic(Rectangle r)
+void mouseHoverLogic(Shape s)
 {
-  if(mouseHoveringOnShape(r))
+  if(mouseHoveringOnShape(s))
   {
-    r.onMouseHover();
+    s.onMouseHover();
   }
-  else if(!mouseHoveringOnShape(r)) 
+  else if(!mouseHoveringOnShape(s)) 
   {
-    if(!r.recordingMode)
+    if(!s.recordingMode)
     {
-      r.onMouseOutside();
+      s.onMouseOutside();
     }
   }
 }

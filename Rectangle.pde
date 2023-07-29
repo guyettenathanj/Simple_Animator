@@ -4,14 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Rectangle extends Shape implements 
-CardinalDirectionMover, MouseHoverListener, KeyPressedListener
+CardinalDirectionMover, KeyPressedListener
 {
   int stepLength = 10;
 
   int rectWidth = 100;
   int rectHeight = 100;  
   Boolean paused = false; 
-  Map<Character, Runnable> keyHandlers = new HashMap<>();
+  
   
   public Rectangle()
   {
@@ -84,14 +84,7 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
     this.recordingMode = recordingMode;
   }
   
-  @Override
-  public void onMouseHover() 
-  {
-    if(!recordingMode)
-    {
-      currentFillColor = color(0, 255, 0);
-    }
-  }
+
   
   @Override
   void onKeyPressed(char keyThatWasPressed)
@@ -103,8 +96,5 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
     }
   }
   
-  public void onMouseOutside()
-  {
-    currentFillColor = color(255, 255, 255); 
-  }
+
 }
