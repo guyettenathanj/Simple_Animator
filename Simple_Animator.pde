@@ -11,7 +11,8 @@ Boolean drawbackground = true;
 Boolean lineMode;
 color backgroundColor = color(0, 0, 0);
 
-void setup() {
+void setup()
+{
   size(1500, 1000);
   noStroke();
   background(0);

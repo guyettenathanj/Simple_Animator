@@ -1,17 +1,13 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public class Rectangle implements 
+public class Rectangle extends Shape implements 
 CardinalDirectionMover, MouseHoverListener, KeyPressedListener
 {
   int stepLength = 10;
-  public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
-  public Coordinate position = new Coordinate();
-  public color currentFillColor = color(255, 255, 255); 
-  
+  public color currentFillColor = color(255, 255, 255);
   int rectWidth = 100;
   int rectHeight = 100;  
-  public Boolean recordingMode = false;
   
   public Rectangle()
   {
@@ -94,16 +90,6 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
     this.recordingMode = recordingMode;
   }
   
-  void mouseLogic()
-  {
-    if (mousePressed)
-    {
-      position.xCoordinate = mouseX;
-      position.yCoordinate = mouseY;
-      addCurrentPositionToHistory();
-    }
-  }
-  
   @Override
   public void onMouseHover() 
   {
@@ -156,41 +142,5 @@ CardinalDirectionMover, MouseHoverListener, KeyPressedListener
   public void onMouseOutside()
   {
     currentFillColor = color(255, 255, 255); 
-  }
-  
-  @Override
-  void moveUp(int moveLength)
-  {
-    position.yCoordinate = position.yCoordinate - moveLength;   
-    addCurrentPositionToHistory();
-  }
-  
-  @Override
-  void moveDown(int moveLength)
-  {
-    position.yCoordinate = position.yCoordinate + moveLength;
-    addCurrentPositionToHistory();
-  }
-  
-  @Override
-  void moveLeft(int moveLength)
-  {
-    position.xCoordinate = position.xCoordinate - moveLength;
-    addCurrentPositionToHistory();
-  }
-  
-  @Override
-  void moveRight(int moveLength)
-  {
-    position.xCoordinate = position.xCoordinate + moveLength;
-    addCurrentPositionToHistory();
-  }
-  
-  private void addCurrentPositionToHistory()
-  {
-    if(recordingMode)
-    {
-      positionHistory.add(new Coordinate(position.xCoordinate, position.yCoordinate));
-    }
   }
 }
