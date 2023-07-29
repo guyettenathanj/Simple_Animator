@@ -17,7 +17,8 @@ void setup()
   size(1500, 1000);
   noStroke();
   background(0);
-  addShapes(4);
+  addRandomRectangles(4);
+  addRandomLines(2);
 }
 
 void draw() 
@@ -41,7 +42,7 @@ void shapeLogic(ArrayList<Shape> shapes)
   }
 }
 
-void addShapes(int numShapes)
+void addRandomRectangles(int numShapes)
 {
   for(int i = 0; i < numShapes; i ++)
   {
@@ -50,6 +51,25 @@ void addShapes(int numShapes)
     getRandomNumber(0, 30),getRandomNumber(0, 300) )
     );
   }
+}
+
+void addRandomLines(int numLines)
+{
+  for(int i = 0; i < numLines; i ++)
+  {
+    shapes.add(
+    new Line(
+    getRandomCoordinate(0, 300),getRandomCoordinate(0, 300) )
+    );
+  }
+}
+
+Coordinate getRandomCoordinate(int lowerBound, int upperBound)
+{
+  Coordinate c = new Coordinate(
+  getRandomNumber(lowerBound, upperBound),
+  getRandomNumber(lowerBound, upperBound));
+  return c;
 }
 
 private boolean mouseHoveringOnShape(Shape r) 
@@ -92,6 +112,5 @@ int getRandomNumber(int lowerBound, int upperBound)
 {
   Random random = new Random();
   int number = random.nextInt(lowerBound, upperBound); 
-  System.out.println("Number was " + number);
   return number;
 }

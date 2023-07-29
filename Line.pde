@@ -9,5 +9,10 @@ public class Line extends Shape
     this.c2 = c2;
   }
   
-  
+  public void display()
+  {
+    super.display();
+    stroke(255, 255, 255);
+    line(c1.xCoordinate, c1.yCoordinate, c2.xCoordinate, c2.yCoordinate);
+  }
 }
