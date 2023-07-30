@@ -7,6 +7,17 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   public Boolean recordingMode = false;
   public Coordinate position = new Coordinate();
   
+  void addDefaultKeyMappings()
+  {
+    keyHandlers.put('6', () -> moveRight(stepLength));
+    keyHandlers.put('4', () -> moveLeft(stepLength));
+    keyHandlers.put('2', () -> moveDown(stepLength));
+    keyHandlers.put('8', () -> moveUp(stepLength));
+    //keyHandlers.put('r', () -> recordingLogic());
+    //keyHandlers.put('b', () -> backgroundLogic());
+    //keyHandlers.put('p', () -> pauseLogic());
+  }
+  
   void mouseLogic()
   {
     if (mousePressed)

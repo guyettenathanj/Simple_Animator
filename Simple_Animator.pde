@@ -28,9 +28,6 @@ void draw()
   shapeLogic(shapes);
 }
 
-void uiLogic(ArrayList<Button> uiElements)
-{
-}
 
 void shapeLogic(ArrayList<Shape> shapes)
 {
@@ -40,6 +37,10 @@ void shapeLogic(ArrayList<Shape> shapes)
     fill(shape.currentFillColor);
     shape.display();
   }
+}
+
+void uiLogic(ArrayList<Button> uiElements)
+{
 }
 
 void addRandomRectangles(int numShapes)

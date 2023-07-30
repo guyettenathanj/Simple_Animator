@@ -9,8 +9,8 @@ CardinalDirectionMover
   int stepLength = 10;
 
   int rectWidth = 100;
-  int rectHeight = 100;  
-  Boolean paused = false; 
+  int rectHeight = 100;
+  Boolean paused = false;
   
   
   public Rectangle()
