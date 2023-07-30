@@ -65,9 +65,6 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
   {
   }
   
-  
-  
-  
   void moveUp(int moveLength)
   {
     c1.yCoordinate  = c1.yCoordinate - moveLength;
