@@ -36,10 +36,14 @@ CardinalDirectionMover, KeyPressedListener
   
   void moveLeft(int moveLength)
   {
+    c1.xCoordinate  = c1.xCoordinate - moveLength;
+    c2.xCoordinate  = c2.xCoordinate - moveLength;
   }
   
   void moveRight(int moveLength)
   {
+    c1.xCoordinate  = c1.xCoordinate + moveLength;
+    c2.xCoordinate  = c2.xCoordinate + moveLength;
   }
   
   @Override
