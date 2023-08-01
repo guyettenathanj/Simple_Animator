@@ -1,7 +1,6 @@
 import org.gicentre.handy.*;
 import java.util.ArrayList;
 import java.util.Random;
-import ui_elements.asldkfj;
 
 // Program state...
 int rectWidth = 100;
