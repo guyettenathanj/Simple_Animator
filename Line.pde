@@ -106,7 +106,7 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
     line(c1.xCoordinate, c1.yCoordinate, c2.xCoordinate, c2.yCoordinate);
   }
   
-  void printColorComponents(color c) 
+  void printColorComponents(color c)
   {
     println("Red: " + (int)red(c));
     println("Green: " + (int)green(c));
