@@ -3,9 +3,12 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
 {
   Map<Character, Runnable> keyHandlers = new HashMap<>();
   public color currentFillColor = color(255, 255, 255);
+  public color selectedFillColor = color(0, 255, 0);
+  public Boolean selected = false;
   public List<Coordinate> positionHistory = new ArrayList<Coordinate>();
   public Boolean recordingMode = false;
   public Coordinate position = new Coordinate();
+  
   
   void addDefaultKeyMappings()
   {
@@ -34,14 +37,20 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   @Override
   public void onMouseHover() 
   {
+    selected = true;
     if(!recordingMode)
     {
-      currentFillColor = color(0, 255, 0);
+      selectedFillColor = color(0, 255, 0);
     }
   }
   
   public void onMouseOutside()
   {
+    selected = false;
+    if(!recordingMode)
+    {
+     
+    }
   }
   
   @Override
@@ -138,8 +147,14 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   
   public void display()
   {
-    fill(currentFillColor);
+    if(selected)
+    {
+      fill(selectedFillColor);
+    }
+    else if(!selected)
+    {
+      fill(currentFillColor);
+    }
     mouseLogic();
   }
-  
 }

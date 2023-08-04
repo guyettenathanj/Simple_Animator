@@ -17,8 +17,12 @@ void setup()
   size(1500, 1000);
   noStroke();
   background(0);
-  addRandomLines(200);
+  // Depending on the order these are added, on set of shapes gets 
+  // rendered on top of the other, adding in essentially a layering logic
+  // I could make this dynamically changing, so I can switch which collection
+  // is rendered...
   addRandomRectangles(4);
+  addRandomLines(200);
 }
 
 void draw() 
@@ -26,9 +30,6 @@ void draw()
   drawBackgroundLogic();
   uiLogic(uiElements);
   shapeLogic(shapes);
-  
-  stroke(255, 0, 0);  
-  line(50, 50, 250, 250);  
 }
 
 
