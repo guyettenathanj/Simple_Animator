@@ -6,6 +6,8 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
   Coordinate c2;
   public Boolean recordingMode = false;
   public List<LineCoordinate> positionHistory = new ArrayList<LineCoordinate>();
+  private static final double proximityThreshold = 10;
+  int index = 0;
   
   public Line(Coordinate c1, Coordinate c2)
   {
@@ -99,12 +101,49 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
     }
   }
   
+  @Override
+  public boolean containsPoint(int x, int y) 
+  {
+    boolean containsPoint = distanceFromLine(x, y) <= proximityThreshold;
+    if(containsPoint)
+    {
+      selected = true;
+    }
+    
+    return containsPoint;
+  }
+
+  private double distanceFromLine(int x, int y) 
+  {
+    int x1 = c1.xCoordinate;
+    int y1 = c1.yCoordinate;
+    int x2 = c2.xCoordinate;
+    int y2 = c2.yCoordinate;
+
+    // Calculate the distance from point (x, y) to the line defined by (x1, y1) and (x2, y2)
+    // This formula is derived from the standard line distance formula in geometry.
+    double distance = Math.abs((y2 - y1)*x - (x2 - x1)*y + x2*y1 - y2*x1) /
+                      Math.sqrt(Math.pow(y2 - y1, 2) + Math.pow(x2 - x1, 2));
+    //println("distance from line was " + distance);
+    return distance;
+  }
+  
   public void display()
   {
-    super.display();
-    stroke(super.currentFillColor);
+    if(selected && !recordingMode)
+    {
+      stroke(selectedFillColor);
+    }
+    else
+    {
+      stroke(currentFillColor);
+    }
     line(c1.xCoordinate, c1.yCoordinate, c2.xCoordinate, c2.yCoordinate);
   }
+
+
+  
+
   
   void printColorComponents(color c)
   {

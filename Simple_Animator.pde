@@ -22,7 +22,7 @@ void setup()
   // I could make this dynamically changing, so I can switch which collection
   // is rendered...
   addRandomRectangles(4);
-  addRandomLines(200);
+  addRandomLines(2);
 }
 
 void draw() 
@@ -64,7 +64,7 @@ void addRandomLines(int numLines)
   {
     shapes.add(
     new Line(
-    getRandomCoordinate(0, 300),getRandomCoordinate(0, 300) )
+    getRandomCoordinate(100, 300),getRandomCoordinate(100, 300) )
     );
   }
 }
