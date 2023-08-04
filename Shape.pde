@@ -42,7 +42,6 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   
   public void onMouseOutside()
   {
-    currentFillColor = color(255, 255, 255); 
   }
   
   @Override

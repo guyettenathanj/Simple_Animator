@@ -33,8 +33,11 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
     {
       if(!paused)
       {
+        println("Line in recording mode, not paused");
+        println();
         super.currentFillColor = color(255, 0, 0);
-        System.out.println("Line in recording mode, not paused");
+        println("super.currentFillColor was");
+        printColorComponents(super.currentFillColor);     
         recordingMode = true;
         playbackPositionHistory(50);
       }
@@ -43,7 +46,6 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
     {
       recordingMode = false;
       System.out.println("Line in not recording mode");
-      currentFillColor = color(getRandomNumber(0, 255), 255, 255); 
     }
   }
   
@@ -109,5 +111,12 @@ CardinalDirectionMover, KeyPressedListener, PositionPlaybackAndRecord
     super.display();
     stroke(super.currentFillColor);
     line(c1.xCoordinate, c1.yCoordinate, c2.xCoordinate, c2.yCoordinate);
+  }
+  
+  void printColorComponents(color c) 
+  {
+    println("Red: " + (int)red(c));
+    println("Green: " + (int)green(c));
+    println("Blue: " + (int)blue(c));
   }
 }

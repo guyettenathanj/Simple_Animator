@@ -17,8 +17,8 @@ void setup()
   size(1500, 1000);
   noStroke();
   background(0);
+  addRandomLines(200);
   addRandomRectangles(4);
-  addRandomLines(2);
 }
 
 void draw() 
