@@ -38,10 +38,6 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   public void onMouseHover() 
   {
     selected = true;
-    if(!recordingMode)
-    {
-      selectedFillColor = color(0, 255, 0);
-    }
   }
   
   public void onMouseOutside()
@@ -147,7 +143,7 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
   
   public void display()
   {
-    if(selected)
+    if(selected && !recordingMode)
     {
       fill(selectedFillColor);
     }
