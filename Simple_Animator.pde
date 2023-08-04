@@ -26,6 +26,9 @@ void draw()
   drawBackgroundLogic();
   uiLogic(uiElements);
   shapeLogic(shapes);
+  
+  stroke(255, 0, 0);  
+  line(50, 50, 250, 250);  
 }
 
 
@@ -103,8 +106,10 @@ void mouseHoverLogic(Shape s)
 
 void drawBackgroundLogic()
 {
+
   if(drawbackground) 
   {
+
     background(backgroundColor);
   }
 }

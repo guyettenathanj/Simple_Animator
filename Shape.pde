@@ -24,7 +24,10 @@ CardinalDirectionMover, KeyPressedListener, MouseHoverListener
     {
       position.xCoordinate = mouseX;
       position.yCoordinate = mouseY;
-      addCurrentPositionToHistory();
+      if(recordingMode)
+      {
+        addCurrentPositionToHistory();
+      }     
     }
   }  
   
